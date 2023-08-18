@@ -33,12 +33,12 @@ function doPost(e) {
     const records = [datetime, userId, title, price]
 
     // スプレッドシートに記載
-    writeSheet(records)
+    addRecord(records)
   })
 }
 
-function writeSheet(records = []) {
-    // スプレッドシートに記載
+// スプレッドシートに記載する
+function addRecord(records = []) {
     const ss = SpreadsheetApp.openById(SPREAD_SHEET_ID); 
     const sheet = ss.getSheetByName(SHEET_NAME);
     // 最終行の一行下に追記
