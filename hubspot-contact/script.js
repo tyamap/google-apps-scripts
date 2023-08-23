@@ -4,7 +4,7 @@ const BASE_URL = "https://api.hubapi.com";
 // コンタクト一覧
 function indexContacts() {
   const path = "/crm/v3/objects/contacts";
-  const query = "";
+  const query = {};
   const header = {
     "Content-Type": "application/json",
     authorization: `Bearer ${HUBSPOT_ACCESS_TOKEN}`,
@@ -35,12 +35,12 @@ function createContact() {
 /**
  * POSTリクエストを送信する
  * @param {string} url
- * @param {string} query
+ * @param {Object} query
  * @param {Object} headers
  */
 function get(
   url,
-  query = "",
+  query = {},
   headers = { "Content-Type": "application/json" }
 ) {
   const options = {
@@ -48,7 +48,8 @@ function get(
     headers,
   };
 
-  const response = UrlFetchApp.fetch(`${url}/${query}`, options);
+  const queryStr = new URLSearchParams(query).toString();
+  const response = UrlFetchApp.fetch(`${url}?${queryStr}`, options);
   const jsonResponse = JSON.parse(response);
 
   Logger.log(jsonResponse);
