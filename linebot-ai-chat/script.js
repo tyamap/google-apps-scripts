@@ -1,5 +1,5 @@
-const OPENAI_TOKEN  = 'OPENAI_TOKEN'; // TODO: OpenaAIのAPIキーを入力
-const LINE_TOKEN    = 'LINE_TOKEN';   // TODO: LINEMessengerのAPIキーを入力
+const OPENAI_TOKEN  = 'OPENAI_TOKEN';  // TODO: OpenaAIのAPIキーを入力
+const CHANNEL_TOKEN = 'CHANNEL_TOKEN'; // TODO: LINEMessengerの ChannelSecret を入力
 const LINE_ENDPOINT = "https://api.line.me/v2/bot/message/reply";
 const GPT_ENDPOINT  = 'https://api.openai.com/v1/chat/completions';
 const MODEL_NAME    = 'gpt-3.5-turbo'; // 使用するGPTモデル
@@ -66,7 +66,7 @@ function lineReply(replyToken, replyText) {
     "method": "post",
     "headers": {
       "Content-Type": "application/json; charset=UTF-8",
-      "Authorization": "Bearer " + LINE_TOKEN
+      "Authorization": "Bearer " + CHANNEL_TOKEN
     },
     "payload": JSON.stringify(message)
   };
