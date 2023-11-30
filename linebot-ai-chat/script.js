@@ -1,5 +1,5 @@
 const OPENAI_TOKEN  = 'OPENAI_TOKEN';  // TODO: OpenaAIのAPIキーを入力
-const CHANNEL_TOKEN = 'CHANNEL_TOKEN'; // TODO: LINEMessengerの ChannelSecret を入力
+const CHANNEL_TOKEN = 'CHANNEL_TOKEN'; // TODO: LINEMessengerの チャネルアクセストークン を入力
 const LINE_ENDPOINT = "https://api.line.me/v2/bot/message/reply";
 const GPT_ENDPOINT  = 'https://api.openai.com/v1/chat/completions';
 const MODEL_NAME    = 'gpt-3.5-turbo'; // 使用するGPTモデル
@@ -47,7 +47,7 @@ function doPost(e) {
     const res = JSON.parse(UrlFetchApp.fetch(GPT_ENDPOINT, options).getContentText());
   
     // GPTから返却されたメッセージをLINEbotで応答
-    lineReply(json, res.choices[0].message.content.trimStart());
+    lineReply(replyToken, res.choices[0].message.content.trimStart());
   })
 }
 
